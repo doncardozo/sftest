@@ -1,0 +1,8 @@
+abook:
+    resource: "@AbookBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#hola:
+#    resource: "@HolaBundle/Resources/config/routing.yml"
+#    prefix:   /
+

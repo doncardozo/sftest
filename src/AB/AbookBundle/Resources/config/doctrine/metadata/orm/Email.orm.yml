@@ -1,0 +1,29 @@
+Email:
+    type: entity
+    table: email
+    fields:
+        idEmail:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_email
+            generator:
+                strategy: IDENTITY
+        contactId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: contact_id
+        email:
+            type: string
+            length: 80
+            fixed: false
+            nullable: true
+        active:
+            type: boolean
+            nullable: true
+        deleted:
+            type: boolean
+            nullable: true
+    lifecycleCallbacks: {  }

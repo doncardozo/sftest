@@ -1,0 +1,15 @@
+abook_homepage:
+    pattern:  /home
+    defaults: { _controller: AbookBundle:Default:index }
+    
+abook_list_contact:
+    pattern:  /listcont
+    defaults: { _controller: AbookBundle:Default:list }
+
+abook_list2_contact:
+    pattern:  /listcont2
+    defaults: { _controller: AbookBundle:Default:list2 }
+    
+abook_add_contact:
+    pattern:  /addcont
+    defaults: { _controller: AbookBundle:Default:add }

@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<section class="col-lg-12">
+<section class="col col-lg-8">
 
     <style type="text/css">
         li { padding:5px }
@@ -23,7 +23,9 @@
                 <li>                    
                     <input class="form-control" type="text" id="addr" name="addr" placeholder="Address" required="true" />
                 </li>
-                <li><input class="btn btn-primary" type="submit" id="submit" name="submit" value="Add" /></li>
+                <li>
+                    <input class="btn btn-primary" type="submit" id="submit" name="submit" value="Add" />
+                </li>
             </ul>
         </fieldset>
         <span>{{ message }}</span>

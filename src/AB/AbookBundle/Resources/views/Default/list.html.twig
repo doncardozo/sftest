@@ -1,11 +1,37 @@
-{% extends "AbookBundle::layout.html.twig" %}
+{% extends "AbookBundle:Layout:layout.html.twig" %}
 
-<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+{% block title %} List Contact {% endblock %}
 
-{% block title title  %}
+{% block body %}
 
-{% block stylesheet %} {% endblock %}
+<section class="col-lg-8">
+    
+    <fieldset>
+        <legend>Contact List</legend>
+        <table class="table table-striped table-bordered table-condensed table-hover">        
+            <thead>
+                <tr>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>Address</td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for current in contact %}
+                <tr>
+                    <td>{{ current.firstName }}</td>
+                    <td>{{ current.lastName }}</td>
+                    <td>{{ current.address }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="3">No data found</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-
-
+    </fieldset>
+    
+</section>
+    
+{% endblock %}
 

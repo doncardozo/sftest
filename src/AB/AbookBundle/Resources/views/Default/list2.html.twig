@@ -23,6 +23,8 @@
                     <td>{{ current.lastName }}</td>
                     <td>{{ current.address }}</td>
                 </tr>
+            {% else %}
+                <tr><td colspan="3">No data found</td></tr>
             {% endfor %}
             </tbody>
         </table>

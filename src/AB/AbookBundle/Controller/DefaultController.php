@@ -26,7 +26,7 @@ class DefaultController extends Controller {
                 ->getRepository("AbookBundle:Contacts")
                 ->findAll();
 
-        if (!$contact) {
+        if (is_null($contact)) {
             throw $this->createNotFoundException("Error: not found.");
         }
 

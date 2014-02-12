@@ -10,13 +10,7 @@ class DefaultController extends Controller {
 
     public function indexAction() {
         return $this->render(
-                        'AbookBundle:Default:index.html.twig', array(
-                            'title' => 'AB - Address Book',
-                            'greet' => "Buenas...",
-                            'datos' => array(
-                                'Oscar', 'Antonio', 'Cardozo'
-                            )
-                        )
+            'AbookBundle:Default:index.html.twig'
         );
     }
 
@@ -38,20 +32,35 @@ class DefaultController extends Controller {
     public function listAction() {
 
         $em = $this->get('doctrine')->getManager();
-        $stmt = $em
-            ->getConnection()
-            ->prepare('call test();');
-        
-        $stmt->execute();
-        $results = $stmt->fetchAll();
-        
+         $stmt = $em
+          ->getConnection()
+          ->prepare('call test();');
+
+          $stmt->execute();
+          $results = $stmt->fetchAll(); 
+
         return $this->render(
-            'AbookBundle:Default:list.html.twig', 
-            array(
-                'title' => 'Contact list',
-                'contact' => $results
-            )
-        );
+                'AbookBundle:Default:list.html.twig', array(
+                    'title' => 'Contact list',
+                    'contact' => $results
+                ));
+        
+//        $results = $this->getManager()
+//                ->createQuery("
+//                SELECT firstName, lastName, address
+//                FROM AbookBundle:Contacts"
+//        );
+//
+//        try {
+//            return $this->render(
+//                            'AbookBundle:Default:list.html.twig', array(
+//                                'title' => 'Contact list',
+//                                'contact' => $results->getSingleResult()
+//                            )
+//            );
+//        } catch (\Doctrine\ORM\NoResultException $e) {
+//            return null;
+//        }
     }
 
     public function addAction(Request $request) {
@@ -76,7 +85,6 @@ class DefaultController extends Controller {
 
                 $message = "Se ha creado: {$contact->getIdContact()}";
             }
-            
         } else {
 
             $message = "";

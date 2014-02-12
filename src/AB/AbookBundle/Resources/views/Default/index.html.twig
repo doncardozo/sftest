@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{{title}}</title>
-    </head>
-    <body>
-        <h2>{{greet}}</h2>
-        
-        {#<input type="text" value="{{datos.0 ~ ' ' ~ datos.1}}">#}
-        
-        {% for value in datos %}
-            <input type="text" value="{{ value }}" /><br />
-        {% endfor %}
-        
-    </body>
-</html>
+{% extends "AbookBundle:Layout:layout.html.twig" %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+
+    <h2>Welcome!</h2>
+
+{% endblock%}

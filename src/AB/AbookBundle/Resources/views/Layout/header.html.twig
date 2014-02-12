@@ -1,14 +1,17 @@
-<nav class="navbar navbar-default">      
+<nav class="navbar navbar-fixed-top navbar-default">      
     
     <ul class="nav navbar-nav">
         <li>
-            <a href="{{ asset("/addcont") }}">&nbsp;Add Contact</a>
+            <a href="{{ asset("/home") }}"><img style="width: 20px" src="{{ asset('bundles/abook/img/favicon.ico') }}"/></a>
         </li>
         <li>
+            <a href="{{ asset("/addcont") }}"><div class="glyphicon glyphicon-plus-sign"></div>&nbsp;Add Contact</a>
+        </li>
+        {#<li>
             <a href="{{ asset("/listcont") }}">&nbsp;List Contact (SP)</a>
-        </li>        
+        </li>#}
         <li>
-            <a href="{{ asset("/listcont2") }}">&nbsp;List Contact</a>
+            <a href="{{ asset("/listcont2") }}"><div class="glyphicon glyphicon-list"></div>&nbsp;List Contact</a>
         </li>        
     </ul><!--nav-->
     

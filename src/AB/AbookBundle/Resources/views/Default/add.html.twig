@@ -4,35 +4,16 @@
 
 {% block body %}
 
-<style type="text/css">
-    .fadd li { padding: 5px }
-</style>
-
 <section class="col col-lg-8">
     
-    <form id="addcont" name="addcont" method="post" action="" >
-        <fieldset>
-            <legend>Add Contact</legend>   
-            
-            <ul class="fadd">
-                <li>
-                    <input class="form-control" type="text" id="fname" name="fname" placeholder="First Name" required="true" />
-                </li>
-                <li>
-                    <input class="form-control" type="text" id="lname" name="lname" placeholder="Last Name" required="true" />
-                </li>
-                <li>                    
-                    <input class="form-control" type="text" id="addr" name="addr" placeholder="Address" required="true" />
-                </li>
-                <li>
-                    <input class="btn btn-primary" type="submit" id="submit" name="submit" value="Add" />
-                </li>
-            </ul>
-            
-        </fieldset>
-        <span>{{ message }}</span>
-    </form>
+    <fieldset>
+        <legend>Edit Contact</legend>   
 
+        {{ form(form) }}
+
+    </fieldset>
+    <br />
+    <span>{{ message }}</span>
 </section>
 
-{% endblock body %}
+{% endblock body %} 

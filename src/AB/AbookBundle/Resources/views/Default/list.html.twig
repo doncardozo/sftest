@@ -4,34 +4,61 @@
 
 {% block body %}
 
-<section class="col-lg-8">
-    
-    <fieldset>
-        <legend>Contact List</legend>
-        <table class="table table-striped table-bordered table-condensed table-hover">        
-            <thead>
-                <tr>
-                    <td>First Name</td>
-                    <td>Last Name</td>
-                    <td>Address</td>
-                </tr>
-            </thead>
-            <tbody>
-            {% for current in contact %}
-                <tr>
-                    <td>{{ current.firstName }}</td>
-                    <td>{{ current.lastName }}</td>
-                    <td>{{ current.address }}</td>
-                </tr>
-            {% else %}
-                <tr><td colspan="3">No data found</td></tr>
-            {% endfor %}
-            </tbody>
-        </table>
+<section class="col col-lg-8">
 
-    </fieldset>
-    
+    <form id="flistcont" name="flistcont" method="post" action="" >
+        <fieldset>
+
+            <legend>Contact List</legend>
+
+            <table class="table table-striped table-bordered table-condensed table-hover">        
+
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for current in contact %}
+                    <tr>
+                        <td>{{ current.idContact }}</td>
+                        <td>{{ current.firstName }}</td>
+                        <td>{{ current.lastName }}</td>
+                        <td>{{ current.address }}</td>
+                        <td><a id="update" href="{{ asset("/updcont") }}" data-id="{{ current.idContact }}"><div class="glyphicon glyphicon-pencil"></div></a></td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan="3">No data found</td></tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+
+        </fieldset>
+    </form>
+
 </section>
-    
-{% endblock %}
 
+<script type="text/javascript">
+    $(function(){
+        $("a #update").on("click", function(){
+            
+           $.ajax({
+               type:'post',
+               url:'{{ asset('/updcont') }}',
+               data: $(this).data("id").val(),
+               success: function(data){
+                alert(data);
+                return false;
+               }
+           }); 
+        });
+    });
+</script>
+
+{% endblock %}

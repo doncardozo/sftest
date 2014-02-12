@@ -6,9 +6,9 @@ abook_list_contact:
     pattern:  /listcont
     defaults: { _controller: AbookBundle:Default:list }
 
-abook_list2_contact:
-    pattern:  /listcont2
-    defaults: { _controller: AbookBundle:Default:list2 }
+abook_update_contact:
+    pattern:  /updcont
+    defaults: { _controller: AbookBundle:Default:update }
     
 abook_add_contact:
     pattern:  /addcont

@@ -1,4 +1,4 @@
-Email:
+AB\AbookBundle\Entity\Email:
     type: entity
     table: email
     fields:

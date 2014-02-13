@@ -2,14 +2,14 @@
     
     <ul class="nav navbar-nav">
         <li>
-            <a href="{{ asset("/home") }}"><img style="width: 20px" src="{{ asset('bundles/abook/img/favicon.ico') }}"/>&nbsp;Address Book</a>
+            <a href="{{ path("abook_homepage") }}"><img style="width: 20px" src="{{ asset('bundles/abook/img/favicon.ico') }}"/>&nbsp;Address Book</a>
         </li>
         <li>
-            <a href="{{ asset("/addcont") }}"><div class="glyphicon glyphicon-plus-sign"></div>&nbsp;Add Contact</a>
+            <a href="{{ path("abook_contacts_add") }}"><div class="glyphicon glyphicon-plus-sign"></div>&nbsp;Add Contact</a>
         </li>
         <li>
-            <a href="{{ asset("/listcont") }}"><div class="glyphicon glyphicon-list"></div>&nbsp;List Contact</a>
+            <a href="{{ path("abook_contacts_list") }}"><div class="glyphicon glyphicon-list"></div>&nbsp;List Contact</a>
         </li>        
-    </ul><!--nav-->
+    </ul>
     
-</nav>
+</nav><!--nav-->

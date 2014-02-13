@@ -2,14 +2,14 @@ abook_homepage:
     pattern:  /home
     defaults: { _controller: AbookBundle:Default:index }
     
-abook_list_contact:
-    pattern:  /listcont
-    defaults: { _controller: AbookBundle:Default:list }
+abook_contacts_add:
+    pattern: /contacts/add
+    defaults: { _controller: AbookBundle:Contacts:add }
 
-abook_update_contact:
-    pattern:  /updcont
-    defaults: { _controller: AbookBundle:Default:update }
-    
-abook_add_contact:
-    pattern:  /addcont
-    defaults: { _controller: AbookBundle:Default:add }
+abook_contacts_edit:
+    pattern: /contacts/edit
+    defaults: { _controller: AbookBundle:Contacts:edit }
+
+abook_contacts_list:
+    pattern: /contacts/list
+    defaults: { _controller: AbookBundle:Contacts:list }

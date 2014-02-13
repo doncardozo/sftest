@@ -5,7 +5,7 @@ namespace AB\AbookBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AB\AbookBundle\Entity\Contacts;
-use AB\AbookBundle\Form\ContactForm;
+use AB\AbookBundle\Form\ContactsType;
 
 class ContactsController extends Controller {
 
@@ -13,7 +13,9 @@ class ContactsController extends Controller {
 
     public function addAction(Request $request) {
 
-        $form = $this->createForm(new ContactForm(), array());
+        $options = array("method"=>"post");
+        
+        $form = $this->createForm(new ContactsType(), new Contacts(), $options);
 
         if ($request->getMethod() === 'POST') {
 

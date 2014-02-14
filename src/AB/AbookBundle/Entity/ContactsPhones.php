@@ -5,90 +5,51 @@ namespace AB\AbookBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Phones
- *
- * @ORM\Table(name="phones")
- * @ORM\Entity
+ * ContactsPhones
  */
-class Phones
+class ContactsPhones
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id_phone", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idPhone;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="contact_id", type="integer", nullable=true)
-     */
-    private $contactId;
+    private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="phone_number", type="string", length=45, nullable=true)
      */
     private $phoneNumber;
 
     /**
      * @var boolean
-     *
-     * @ORM\Column(name="active", type="boolean", nullable=true)
      */
     private $active;
 
     /**
      * @var boolean
-     *
-     * @ORM\Column(name="deleted", type="boolean", nullable=true)
      */
     private $deleted;
 
+    /**
+     * @var \AB\AbookBundle\Entity\Contacts
+     */
+    private $contact;
 
 
     /**
-     * Get idPhone
+     * Get id
      *
      * @return integer 
      */
-    public function getIdPhone()
+    public function getId()
     {
-        return $this->idPhone;
-    }
-
-    /**
-     * Set contactId
-     *
-     * @param integer $contactId
-     * @return Phones
-     */
-    public function setContactId($contactId)
-    {
-        $this->contactId = $contactId;
-    
-        return $this;
-    }
-
-    /**
-     * Get contactId
-     *
-     * @return integer 
-     */
-    public function getContactId()
-    {
-        return $this->contactId;
+        return $this->id;
     }
 
     /**
      * Set phoneNumber
      *
      * @param string $phoneNumber
-     * @return Phones
+     * @return ContactsPhones
      */
     public function setPhoneNumber($phoneNumber)
     {
@@ -111,7 +72,7 @@ class Phones
      * Set active
      *
      * @param boolean $active
-     * @return Phones
+     * @return ContactsPhones
      */
     public function setActive($active)
     {
@@ -134,7 +95,7 @@ class Phones
      * Set deleted
      *
      * @param boolean $deleted
-     * @return Phones
+     * @return ContactsPhones
      */
     public function setDeleted($deleted)
     {
@@ -151,5 +112,28 @@ class Phones
     public function getDeleted()
     {
         return $this->deleted;
+    }
+
+    /**
+     * Set contact
+     *
+     * @param \AB\AbookBundle\Entity\Contacts $contact
+     * @return ContactsPhones
+     */
+    public function setContact(\AB\AbookBundle\Entity\Contacts $contact = null)
+    {
+        $this->contact = $contact;
+    
+        return $this;
+    }
+
+    /**
+     * Get contact
+     *
+     * @return \AB\AbookBundle\Entity\Contacts 
+     */
+    public function getContact()
+    {
+        return $this->contact;
     }
 }

@@ -1,13 +1,12 @@
 AB\AbookBundle\Entity\Contacts:
     type: entity
-    table: contacts
+    table: Contacts
     fields:
-        idContact:
+        id:
             id: true
             type: integer
             unsigned: false
             nullable: false
-            column: id_contact
             generator:
                 strategy: IDENTITY
         firstName:
@@ -33,4 +32,14 @@ AB\AbookBundle\Entity\Contacts:
         deleted:
             type: boolean
             nullable: true
+    manyToOne:
+        category:
+            targetEntity: Categories
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks: {  }

@@ -2,62 +2,258 @@
 
 namespace AB\AbookBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AB\AbookBundle\Entity\Contacts;
 use AB\AbookBundle\Form\ContactsType;
 
-class ContactsController extends Controller {
+/**
+ * Contacts controller.
+ *
+ * @Route("/contacts")
+ */
+class ContactsController extends Controller
+{
 
-    private $message = "";
+    /**
+     * Lists all Contacts entities.
+     *
+     * @Route("/", name="contacts")
+     * @Method("GET")
+     * @Template()
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
 
-    public function addAction(Request $request) {
+        $entities = $em->getRepository('AbookBundle:Contacts')->findAll();
 
-        $options = array("method"=>"post");
+        return array(
+            'entities' => $entities,
+        );
+    }
+    /**
+     * Creates a new Contacts entity.
+     *
+     * @Route("/", name="contacts_create")
+     * @Method("POST")
+     * @Template("AbookBundle:Contacts:new.html.twig")
+     */
+    public function createAction(Request $request)
+    {
+        $entity = new Contacts();
+        $form = $this->createCreateForm($entity);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('contacts_show', array('id' => $entity->getId())));
+        }
+
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+    }
+
+    /**
+    * Creates a form to create a Contacts entity.
+    *
+    * @param Contacts $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createCreateForm(Contacts $entity)
+    {
+        $form = $this->createForm(new ContactsType(), $entity, array(
+            'action' => $this->generateUrl('contacts_create'),
+            'method' => 'POST',
+        ));
         
-        $form = $this->createForm(new ContactsType(), new Contacts(), $options);
+        $form->add('submit', 'submit', array(
+            "label"=>"Create",
+            "attr"=>array(
+                "class"=>"btn btn-primary",
+                "style"=>"margin-top: 15px;"
+             )
+        ));
 
-        if ($request->getMethod() === 'POST') {
+        return $form;
+    }
 
-            $form->handleRequest($request);
+    /**
+     * Displays a form to create a new Contacts entity.
+     *
+     * @Route("/new", name="contacts_new")
+     * @Method("GET")
+     * @Template()
+     */
+    public function newAction()
+    {
+        $entity = new Contacts();
+        $form   = $this->createCreateForm($entity);
 
-            if ($form->isValid()) {
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+    }
 
-                $contact = $form->getData();
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($contact->getContact);
-                $em->flush();
+    /**
+     * Finds and displays a Contacts entity.
+     *
+     * @Route("/{id}", name="contacts_show")
+     * @Method("GET")
+     * @Template()
+     */
+    public function showAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
 
-                $this->message = "Is inserted: {$contact->getIdContact()}";
-            } else {
-                $this->message = "There are errors.";
+        $entity = $em->getRepository('AbookBundle:Contacts')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Contacts entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+
+        return array(
+            'entity'      => $entity,
+            'delete_form' => $deleteForm->createView(),
+        );
+    }
+
+    /**
+     * Displays a form to edit an existing Contacts entity.
+     *
+     * @Route("/{id}/edit", name="contacts_edit")
+     * @Method("GET")
+     * @Template()
+     */
+    public function editAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AbookBundle:Contacts')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Contacts entity.');
+        }
+
+        $editForm = $this->createEditForm($entity);
+        $deleteForm = $this->createDeleteForm($id);
+
+        return array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        );
+    }
+
+    /**
+    * Creates a form to edit a Contacts entity.
+    *
+    * @param Contacts $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditForm(Contacts $entity)
+    {
+        $form = $this->createForm(new ContactsType(), $entity, array(
+            'action' => $this->generateUrl('contacts_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        $form->add('submit', 'submit', array(
+            "label"=>"Update",
+            "attr"=>array(                
+                "class"=>"btn btn-primary",
+                "style"=>"margin-top: 15px;"
+             )
+        ));
+                
+        return $form;
+    }
+    /**
+     * Edits an existing Contacts entity.
+     *
+     * @Route("/{id}", name="contacts_update")
+     * @Method("PUT")
+     * @Template("AbookBundle:Contacts:edit.html.twig")
+     */
+    public function updateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AbookBundle:Contacts')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Contacts entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($entity);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('contacts_edit', array('id' => $id)));
+        }
+
+        return array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        );
+    }
+    /**
+     * Deletes a Contacts entity.
+     *
+     * @Route("/{id}", name="contacts_delete")
+     * @Method("DELETE")
+     */
+    public function deleteAction(Request $request, $id)
+    {
+        $form = $this->createDeleteForm($id);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('AbookBundle:Contacts')->find($id);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Contacts entity.');
             }
+
+            $em->remove($entity);
+            $em->flush();
         }
 
-        return $this->render(
-                'AbookBundle:Contacts:add.html.twig', 
-                array("message" => $this->message, "form" => $form->createView())
-        );
+        return $this->redirect($this->generateUrl('contacts'));
     }
 
-    public function editAction() {
-        
+    /**
+     * Creates a form to delete a Contacts entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('contacts_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->getForm()
+        ;
     }
-
-    public function listAction() {
-
-        $contact = $this->getDoctrine()
-                ->getRepository("AbookBundle:Contacts")
-                ->findAll();
-
-        if (is_null($contact)) {
-            throw $this->createNotFoundException("Error: not found.");
-        }
-
-        return $this->render(
-                'AbookBundle:Contacts:list.html.twig', 
-                array('contact' => $contact)
-        );
-    }
-
 }

@@ -2,6 +2,15 @@
 
 {% block title %}Edit Contact{% endblock %}
 
-{% block body %}
-<h1>Welcome to the Contacts:edit page</h1>
+{% block body -%}
+
+<section class="col col-lg-8">
+    <fieldset>
+        <legend>Contacts Edit</legend>
+
+    {{ form(edit_form) }}        
+
+    </fieldset>
+</section>
+
 {% endblock %}

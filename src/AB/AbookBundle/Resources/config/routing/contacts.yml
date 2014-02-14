@@ -1,0 +1,30 @@
+contacts:
+    pattern:  /home
+    defaults: { _controller: "AbookBundle:Contacts:index" }
+
+contacts_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AbookBundle:Contacts:show" }
+
+contacts_new:
+    pattern:  /new
+    defaults: { _controller: "AbookBundle:Contacts:new" }
+
+contacts_create:
+    pattern:  /create
+    defaults: { _controller: "AbookBundle:Contacts:create" }
+    requirements: { _method: post }
+
+contacts_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AbookBundle:Contacts:edit" }
+
+contacts_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "AbookBundle:Contacts:update" }
+    requirements: { _method: post|put }
+
+contacts_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AbookBundle:Contacts:delete" }
+    requirements: { _method: post|delete }

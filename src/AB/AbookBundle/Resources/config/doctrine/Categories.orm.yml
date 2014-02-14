@@ -1,26 +1,19 @@
-AB\AbookBundle\Entity\Phones:
+AB\AbookBundle\Entity\Categories:
     type: entity
-    table: phones
+    table: Categories
     fields:
-        idPhone:
+        id:
             id: true
             type: integer
             unsigned: false
             nullable: false
-            column: id_phone
             generator:
                 strategy: IDENTITY
-        contactId:
-            type: integer
-            unsigned: false
-            nullable: true
-            column: contact_id
-        phoneNumber:
+        name:
             type: string
             length: 45
             fixed: false
             nullable: true
-            column: phone_number
         active:
             type: boolean
             nullable: true

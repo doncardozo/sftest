@@ -1,29 +1,34 @@
-AB\AbookBundle\Entity\Email:
+AB\AbookBundle\Entity\ContactsPhones:
     type: entity
-    table: email
+    table: contacts_phones
     fields:
-        idEmail:
+        id:
             id: true
             type: integer
             unsigned: false
             nullable: false
-            column: id_email
             generator:
                 strategy: IDENTITY
-        contactId:
-            type: integer
-            unsigned: false
-            nullable: true
-            column: contact_id
-        email:
+        phoneNumber:
             type: string
-            length: 80
+            length: 45
             fixed: false
             nullable: true
+            column: phone_number
         active:
             type: boolean
             nullable: true
         deleted:
             type: boolean
             nullable: true
+    manyToOne:
+        contact:
+            targetEntity: Contacts
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks: {  }

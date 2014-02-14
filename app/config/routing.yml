@@ -1,5 +1,5 @@
 abook:
-    resource: "@AbookBundle/Resources/config/routing.yml"
+    resource: "@AbookBundle/Resources/config/routing/contacts.yml"
     prefix:   /
 
 #hola:

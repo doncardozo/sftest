@@ -5,90 +5,51 @@ namespace AB\AbookBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Email
- *
- * @ORM\Table(name="email")
- * @ORM\Entity
+ * ContactsEmails
  */
-class Email
+class ContactsEmails
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id_email", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idEmail;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="contact_id", type="integer", nullable=true)
-     */
-    private $contactId;
+    private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=80, nullable=true)
      */
     private $email;
 
     /**
      * @var boolean
-     *
-     * @ORM\Column(name="active", type="boolean", nullable=true)
      */
     private $active;
 
     /**
      * @var boolean
-     *
-     * @ORM\Column(name="deleted", type="boolean", nullable=true)
      */
     private $deleted;
 
+    /**
+     * @var \AB\AbookBundle\Entity\Contacts
+     */
+    private $contact;
 
 
     /**
-     * Get idEmail
+     * Get id
      *
      * @return integer 
      */
-    public function getIdEmail()
+    public function getId()
     {
-        return $this->idEmail;
-    }
-
-    /**
-     * Set contactId
-     *
-     * @param integer $contactId
-     * @return Email
-     */
-    public function setContactId($contactId)
-    {
-        $this->contactId = $contactId;
-    
-        return $this;
-    }
-
-    /**
-     * Get contactId
-     *
-     * @return integer 
-     */
-    public function getContactId()
-    {
-        return $this->contactId;
+        return $this->id;
     }
 
     /**
      * Set email
      *
      * @param string $email
-     * @return Email
+     * @return ContactsEmails
      */
     public function setEmail($email)
     {
@@ -111,7 +72,7 @@ class Email
      * Set active
      *
      * @param boolean $active
-     * @return Email
+     * @return ContactsEmails
      */
     public function setActive($active)
     {
@@ -134,7 +95,7 @@ class Email
      * Set deleted
      *
      * @param boolean $deleted
-     * @return Email
+     * @return ContactsEmails
      */
     public function setDeleted($deleted)
     {
@@ -151,5 +112,28 @@ class Email
     public function getDeleted()
     {
         return $this->deleted;
+    }
+
+    /**
+     * Set contact
+     *
+     * @param \AB\AbookBundle\Entity\Contacts $contact
+     * @return ContactsEmails
+     */
+    public function setContact(\AB\AbookBundle\Entity\Contacts $contact = null)
+    {
+        $this->contact = $contact;
+    
+        return $this;
+    }
+
+    /**
+     * Get contact
+     *
+     * @return \AB\AbookBundle\Entity\Contacts 
+     */
+    public function getContact()
+    {
+        return $this->contact;
     }
 }

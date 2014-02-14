@@ -6,66 +6,53 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Contacts
- *
- * @ORM\Table(name="contacts")
- * @ORM\Entity
  */
 class Contacts
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id_contact", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idContact;
+    private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="first_name", type="string", length=80, nullable=true)
      */
     private $firstName;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="last_name", type="string", length=80, nullable=true)
      */
     private $lastName;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="address", type="string", length=80, nullable=true)
      */
     private $address;
 
     /**
      * @var boolean
-     *
-     * @ORM\Column(name="active", type="boolean", nullable=true)
      */
     private $active;
 
     /**
      * @var boolean
-     *
-     * @ORM\Column(name="deleted", type="boolean", nullable=true)
      */
     private $deleted;
 
-
-
     /**
-     * Get idContact
+     * @var \AB\AbookBundle\Entity\Categories
+     */
+    private $category;
+    
+    
+    /**
+     * Get id
      *
      * @return integer 
      */
-    public function getIdContact()
+    public function getId()
     {
-        return $this->idContact;
+        return $this->id;
     }
 
     /**
@@ -181,5 +168,28 @@ class Contacts
     public function getDeleted()
     {
         return $this->deleted;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AB\AbookBundle\Entity\Categories $category
+     * @return Contacts
+     */
+    public function setCategory(\AB\AbookBundle\Entity\Categories $category = null)
+    {
+        $this->category = $category;
+    
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AB\AbookBundle\Entity\Categories 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

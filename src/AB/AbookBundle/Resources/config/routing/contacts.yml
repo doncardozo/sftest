@@ -2,6 +2,10 @@ contacts:
     pattern:  /home
     defaults: { _controller: "AbookBundle:Contacts:index" }
 
+contacts_list:
+    pattern:  /list
+    defaults: { _controller: "AbookBundle:Contacts:index" }
+
 contacts_show:
     pattern:  /{id}/show
     defaults: { _controller: "AbookBundle:Contacts:show" }

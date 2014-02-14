@@ -252,7 +252,9 @@ class ContactsController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('contacts_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array(
+                'label' => 'Delete', 
+                "attr"=>array("class"=>"btn btn-primary")))
             ->getForm()
         ;
     }

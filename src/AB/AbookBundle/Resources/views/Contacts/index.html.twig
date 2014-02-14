@@ -16,7 +16,7 @@
                     <th>Lastname</th>
                     <th>Address</th>
                     <th>Active</th>
-                    <th>Actions</th>
+                    <th style="width:255px">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,12 +28,12 @@
                     <td>{{ entity.address }}</td>
                     <td>{% if entity.active == 1 %} Yes {% else %} No {% endif %}</td>
                     <td>
-                        <ul class="actions">
+                        <ul class="record_actions">
                             <li>
-                                <a href="{{ path('contacts_show', { 'id': entity.id }) }}">show&nbsp;|</a>
+                                <a class="btn btn-primary" href="{{ path('contacts_show', { 'id': entity.id }) }}">show</a>
                             </li>
                             <li>
-                                <a href="{{ path('contacts_edit', { 'id': entity.id }) }}">edit</a>
+                                <a class="btn btn-primary" href="{{ path('contacts_edit', { 'id': entity.id }) }}">edit</a>
                             </li>
                         </ul>
                     </td>
@@ -44,7 +44,15 @@
     </fieldset>
 </section>
 <style type="text/css">
-    .actions li { display: inline-block }
+    .record_actions { 
+        padding-left: 20px;
+        margin-bottom: 0px;
+    }
+    .record_actions li { display: inline-block }
+    .btn-primary { 
+        padding-bottom: 0px; 
+        padding-top: 0px; 
+    }
 </style>
 
 

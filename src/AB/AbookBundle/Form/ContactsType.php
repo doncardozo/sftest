@@ -30,28 +30,12 @@ class ContactsType extends AbstractType {
             'query_builder' => function(EntityRepository $er) {
                 return $er->createQueryBuilder("c");
             }
-        );
-                
-        $cat = array_merge($cat, $attr);
-        
+        );                
+        $cat = array_merge($cat, $attr);        
         $builder->add('category', 'entity', $cat);
         
-        # Phone
-        $pho = array(
-            'class' => 'AbookBundle:ContactsPhones',
-            'property' => 'name',
-            'query_builder' => function(EntityRepository $er) {
-                return $er->createQueryBuilder("c");
-            }
-        );
-                
-        $pho = array_merge($pho, $attr);
-        
-        $builder->add('phone', 'entity', $pho);
-                
-                
-        $attr = array_merge($attr, array("required"=>""));
-        
+        # Active checkbox
+        $attr = array_merge($attr, array("required"=>""));        
         $builder->add('active', 'checkbox', $attr);
     }
 

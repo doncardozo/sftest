@@ -34,8 +34,16 @@ class ContactsType extends AbstractType {
         $cat = array_merge($cat, $attr);        
         $builder->add('category', 'entity', $cat);
         
-        # Active checkbox
-        $attr = array_merge($attr, array("required"=>""));        
+        # Active checkbox                
+        $attr = array(
+            "required"=>"false",
+            
+            "attr" => array(
+                    "class" => "form-control",
+                    "style"=>"width:13px; height: 13px; margin-top:0px"
+                )
+            );
+        
         $builder->add('active', 'checkbox', $attr);
     }
 

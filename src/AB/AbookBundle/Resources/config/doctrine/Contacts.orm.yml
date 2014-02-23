@@ -1,6 +1,6 @@
 AB\AbookBundle\Entity\Contacts:
     type: entity
-    table: Contacts
+    table: contacts
     fields:
         id:
             id: true

@@ -43,8 +43,8 @@ class Contacts
      * @var \AB\AbookBundle\Entity\Categories
      */
     private $category;
-    
-    
+
+
     /**
      * Get id
      *

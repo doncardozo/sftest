@@ -1,5 +1,5 @@
 contacts:
-    pattern:  /home
+    pattern:  /
     defaults: { _controller: "AbookBundle:Contacts:index" }
 
 contacts_list:

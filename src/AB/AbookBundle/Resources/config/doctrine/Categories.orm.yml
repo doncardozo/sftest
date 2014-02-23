@@ -1,6 +1,6 @@
 AB\AbookBundle\Entity\Categories:
     type: entity
-    table: Categories
+    table: categories
     fields:
         id:
             id: true
